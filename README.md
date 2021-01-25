@@ -1,1 +1,11 @@
-# just-tech-news
+# Just Tech News
+## Description
+
+## Usage
+
+## Test
+
+## Built With
+*
+*
+*
