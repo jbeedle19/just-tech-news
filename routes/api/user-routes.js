@@ -50,6 +50,30 @@ router.post('/', (req, res) => {
     });
 });
 
+// POST /api/login, route to verify user's identity
+router.post('/login', (req, res) => {
+    // Expects {email: 'josh.beedle@gmail.com', password: 'pass1234'}
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(dbUserData => {
+        if (!dbUserData) {
+            res.status(400).json({ message: 'No user with that email address!' });
+            return;
+        }
+        
+        // Verify user
+        const validPassword = dbUserData.checkPassword(req.body.password);
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+});
+
 // PUT /api/users/1, updates an existing user
 router.put('/:id', (req, res) => {
     // Expects {username: 'jbeedle', email: 'josh.beedle@gmail.com', password: 'pass1234'}
