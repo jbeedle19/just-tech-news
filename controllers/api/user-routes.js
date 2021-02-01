@@ -110,6 +110,17 @@ router.post('/login', (req, res) => {
     });
 });
 
+// POST api route to log the user out and end session
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
 // PUT /api/users/1, updates an existing user
 router.put('/:id', (req, res) => {
     // Expects {username: 'jbeedle', email: 'josh.beedle@gmail.com', password: 'pass1234'}
