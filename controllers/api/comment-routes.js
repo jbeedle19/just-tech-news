@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     // Check the session (is user logged in or not)
-    if (req.session) {
+    if (req.session.loggedIn) {
         Comment.create({
             comment_text: req.body.comment_text,
             post_id: req.body.post_id,

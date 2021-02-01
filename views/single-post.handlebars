@@ -13,6 +13,7 @@
 </article>
 
 {{!-- Post Comment/Upvote --}}
+{{#if loggedIn}}
 <form class="comment-form">
     <div>
         <textarea name="comment-body"></textarea>
@@ -23,6 +24,7 @@
         <button type="button" class="upvote-btn">upvote</button>
     </div>
 </form>
+{{/if}}
 
 {{!-- Display Comments --}}
 <div class="comments">
@@ -39,6 +41,7 @@
 </div>
 
 {{!-- Link javascript code to enable page functions --}}
+{{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
 <script src="/javascript/upvote.js"></script>
-
+{{/if}}
