@@ -5,6 +5,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
+        order: [['created_at', 'DESC']],
         where: {
             // Use the ID from the session
             user_id: req.session.user_id
